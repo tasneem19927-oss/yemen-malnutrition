@@ -1,15 +1,14 @@
 """
 User management endpoints (Admin only).
 """
-
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
 
 from app.db.session import get_db
 from app.core.security import require_admin, get_password_hash
-from app.models.user import User, Role, HealthcareCenter
-from app.schemas.user import UserCreate, UserUpdate, UserResponse, HealthcareCenterCreate, HealthcareCenterResponse
+from app.models.user import User, Role
+from app.schemas.user import UserCreate, UserUpdate, UserResponse
 
 router = APIRouter(prefix="/users", tags=["User Management"])
 
@@ -26,7 +25,6 @@ async def list_users(
 ):
     """List all users with filtering (Admin only)."""
     query = db.query(User)
-
     if role:
         query = query.join(Role).filter(Role.name == role)
     if is_active is not None:
@@ -37,7 +35,6 @@ async def list_users(
             User.email.ilike(f"%{search}%") |
             User.username.ilike(f"%{search}%")
         )
-
     users = query.offset(skip).limit(limit).all()
     return [UserResponse.model_validate(u) for u in users]
 
@@ -54,7 +51,6 @@ async def create_user(
         raise HTTPException(status_code=400, detail="Email already registered")
     if db.query(User).filter(User.username == user_data.username).first():
         raise HTTPException(status_code=400, detail="Username already taken")
-
     user = User(
         email=user_data.email,
         username=user_data.username,
@@ -67,7 +63,6 @@ async def create_user(
     db.add(user)
     db.commit()
     db.refresh(user)
-
     return UserResponse.model_validate(user)
 
 
@@ -95,10 +90,8 @@ async def update_user(
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-
     for field, value in user_data.model_dump(exclude_unset=True).items():
         setattr(user, field, value)
-
     db.commit()
     db.refresh(user)
     return UserResponse.model_validate(user)
@@ -114,34 +107,6 @@ async def delete_user(
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-
     user.is_active = False
     db.commit()
     return {"message": "User deactivated successfully"}
-
-
-# Healthcare Centers
-@router.get("/healthcare-centers", response_model=List[HealthcareCenterResponse])
-async def list_centers(
-    skip: int = 0,
-    limit: int = 100,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(require_admin),
-):
-    """List all healthcare centers."""
-    centers = db.query(HealthcareCenter).offset(skip).limit(limit).all()
-    return [HealthcareCenterResponse.model_validate(c) for c in centers]
-
-
-@router.post("/healthcare-centers", response_model=HealthcareCenterResponse)
-async def create_center(
-    center_data: HealthcareCenterCreate,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(require_admin),
-):
-    """Create healthcare center."""
-    center = HealthcareCenter(**center_data.model_dump())
-    db.add(center)
-    db.commit()
-    db.refresh(center)
-    return HealthcareCenterResponse.model_validate(center)
