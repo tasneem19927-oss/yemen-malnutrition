@@ -1,9 +1,7 @@
-# Yemen Child Malnutrition Prediction & Clinical Decision Support System
+# An AI model for child Malnutrition prediction in Yemen.
 
 ## Overview
-
-Enterprise-grade platform for predicting child malnutrition (0-59 months) in Yemen's low-resource healthcare facilities. Built with offline-first architecture, bilingual support (Arabic/English), and edge AI deployment.
-
+AI-powered child malnutrition prediction platform using XGBoost. Predicts stunting, wasting, and underweight in children aged 0-59 months.To increase accuracy, a RAG system was added. To enable it to run on resource-constrained mobile devices, we used BioMobileBERT.
 ## Key Features
 
 - **XGBoost Prediction Engine**: 3 independent models for Stunting, Wasting, and Underweight
