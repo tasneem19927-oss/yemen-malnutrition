@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func, distinct
 from typing import Optional
 from datetime import datetime, timedelta
+import psutil
 
 from app.db.session import get_db
 from app.core.security import require_admin, require_doctor
@@ -104,8 +105,6 @@ async def get_system_health(
     current_user: User = Depends(require_admin),
 ):
     """Get system health status."""
-    import psutil
-
     return {
         "cpu": {
             "percent": psutil.cpu_percent(),
