@@ -18,6 +18,7 @@ from app.services.rag.clinical_rag import ClinicalRAG
 
 router = APIRouter(prefix="/knowledge", tags=["Knowledge Base"])
 
+
 @router.get("", response_model=List[KnowledgeBaseResponse])
 async def list_knowledge(
     skip: int = Query(0, ge=0),
@@ -36,6 +37,7 @@ async def list_knowledge(
     entries = query.order_by(KnowledgeBase.created_at.desc()).offset(skip).limit(limit).all()
     return [KnowledgeBaseResponse.model_validate(e) for e in entries]
 
+
 @router.post("", response_model=KnowledgeBaseResponse, status_code=status.HTTP_201_CREATED)
 async def create_knowledge(
     entry: KnowledgeBaseCreate,
@@ -52,6 +54,7 @@ async def create_knowledge(
     db.refresh(kb_entry)
     return KnowledgeBaseResponse.model_validate(kb_entry)
 
+
 @router.get("/{entry_id}", response_model=KnowledgeBaseResponse)
 async def get_knowledge(
     entry_id: int,
@@ -63,6 +66,7 @@ async def get_knowledge(
     if not entry:
         raise HTTPException(status_code=404, detail="Knowledge entry not found")
     return KnowledgeBaseResponse.model_validate(entry)
+
 
 @router.put("/{entry_id}", response_model=KnowledgeBaseResponse)
 async def update_knowledge(
@@ -80,6 +84,7 @@ async def update_knowledge(
     db.commit()
     db.refresh(entry)
     return KnowledgeBaseResponse.model_validate(entry)
+
 
 @router.post("/{entry_id}/approve")
 async def approve_knowledge(
@@ -104,6 +109,7 @@ async def approve_knowledge(
     db.commit()
     return {"message": f"Entry {'approved' if approval.approved else 'rejected'}"}
 
+
 # RAG Search
 @router.post("/search", response_model=List[KnowledgeSearchResult])
 async def search_knowledge(
@@ -121,6 +127,7 @@ async def search_knowledge(
         year_max=request.year_max,
     )
     return results
+
 
 @router.post("/query")
 async def query_knowledge(
