@@ -1,0 +1,52 @@
+{
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "totalPatients": "إجمالي المرضى",
+    "newPatients": "مرضى جدد",
+    "predictions": "التنبؤات",
+    "severeCases": "حالات حادة",
+    "moderateCases": "حالات متوسطة",
+    "recentPredictions": "التنبؤات الأخيرة",
+    "quickActions": "إجراءات سريعة"
+  },
+  "patients": {
+    "title": "المرضى",
+    "newPatient": "مريض جديد",
+    "search": "البحث في المرضى...",
+    "registrationNumber": "رقم التسجيل",
+    "name": "الاسم",
+    "age": "العمر",
+    "sex": "الجنس",
+    "location": "الموقع",
+    "actions": "إجراءات"
+  },
+  "predictions": {
+    "title": "التنبؤات",
+    "newPrediction": "تنبؤ جديد",
+    "stunting": "التقزم",
+    "wasting": "الهزال",
+    "underweight": "نقص الوزن",
+    "severity": "الشدة",
+    "risk": "الخطر",
+    "confidence": "الثقة",
+    "normal": "طبيعي",
+    "mild": "خفيف",
+    "moderate": "متوسط",
+    "severe": "حاد"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "view": "عرض",
+    "download": "تحميل",
+    "submit": "إرسال",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجاح",
+    "warning": "تحذير",
+    "offline": "وضع عدم الاتصال",
+    "sync": "مزامنة الآن"
+  }
+}

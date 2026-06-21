@@ -1,0 +1,1 @@
+import React from "react"; export default function PredictionsPage() { return <div>Predictions</div>; }

@@ -1,0 +1,1 @@
+import React from "react"; export default function PatientDetailPage() { return <div>Patient Detail</div>; }

@@ -1,0 +1,1 @@
+import React from "react"; export default function NursePage() { return <div>Nurse Station</div>; }

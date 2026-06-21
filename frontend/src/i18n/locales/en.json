@@ -1,0 +1,52 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "totalPatients": "Total Patients",
+    "newPatients": "New Patients",
+    "predictions": "Predictions",
+    "severeCases": "Severe Cases",
+    "moderateCases": "Moderate Cases",
+    "recentPredictions": "Recent Predictions",
+    "quickActions": "Quick Actions"
+  },
+  "patients": {
+    "title": "Patients",
+    "newPatient": "New Patient",
+    "search": "Search patients...",
+    "registrationNumber": "Registration Number",
+    "name": "Name",
+    "age": "Age",
+    "sex": "Sex",
+    "location": "Location",
+    "actions": "Actions"
+  },
+  "predictions": {
+    "title": "Predictions",
+    "newPrediction": "New Prediction",
+    "stunting": "Stunting",
+    "wasting": "Wasting",
+    "underweight": "Underweight",
+    "severity": "Severity",
+    "risk": "Risk",
+    "confidence": "Confidence",
+    "normal": "Normal",
+    "mild": "Mild",
+    "moderate": "Moderate",
+    "severe": "Severe"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "download": "Download",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "offline": "Offline Mode",
+    "sync": "Sync Now"
+  }
+}
