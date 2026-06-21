@@ -6,6 +6,8 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from datetime import datetime
+import uuid
+from dateutil.relativedelta import relativedelta
 
 from app.db.session import get_db
 from app.core.security import require_nurse, require_doctor, get_current_user
@@ -57,11 +59,9 @@ async def create_patient(
 ):
     """Register a new patient."""
     # Generate registration number
-    import uuid
     reg_num = f"YMN-{datetime.utcnow().strftime('%Y%m')}-{str(uuid.uuid4())[:6].upper()}"
 
     # Calculate age in months
-    from dateutil.relativedelta import relativedelta
     age_months = relativedelta(datetime.utcnow(), patient_data.date_of_birth).months
     age_months += relativedelta(datetime.utcnow(), patient_data.date_of_birth).years * 12
 
