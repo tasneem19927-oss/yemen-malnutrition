@@ -386,3 +386,10 @@ class ClinicalRAG:
         except Exception as e:
             logger.error(f"Failed to load index: {e}")
             return False
+            def __init__(self):
+    self.embedding_model = None
+    self.faiss_index = None
+    self.knowledge_base = {}
+    self._initialized = False
+    self._init_embedding_model()
+    self._init_faiss_index()
