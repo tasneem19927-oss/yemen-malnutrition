@@ -87,10 +87,10 @@ services:
     container_name: yemen-nginx
     ports:
       - "80:80"
-      - "443:443"
+            # - "443:443"  # Disabled until SSL certificates are provisioned
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/ssl:/etc/nginx/ssl
+            # - ./docker/nginx/ssl:/etc/nginx/ssl  # Disabled: create ssl/ dir with certs to enable HTTPS
     depends_on:
       - backend
       - frontend
