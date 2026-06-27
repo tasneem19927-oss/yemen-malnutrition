@@ -32,7 +32,8 @@ class ClinicalRAG:
         self.faiss_index = None
         self.knowledge_base = {}
         self._initialized = False
-        self._init_embedding_model()
+                                try:
+                    self._init_embedding_model()
         self._init_faiss_index()
 
     def _init_embedding_model(self):
