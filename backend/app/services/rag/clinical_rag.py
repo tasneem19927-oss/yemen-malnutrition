@@ -32,10 +32,13 @@ class ClinicalRAG:
         self.faiss_index = None
         self.knowledge_base = {}
         self._initialized = False
-                                try:
-                    self._init_embedding_model()
-        self._init_faiss_index()
-
+                    try:
+            self._init_embedding_model()
+            self._init_faiss_index()
+                self._initialized = True
+            except Exception as e:
+            logger.warning(f"ClinicalRAG init incomplete: {e}. RAG will use fallback search.")
+                    self._initialized = False
     def _init_embedding_model(self):
         """Initialize sentence transformer embedding model."""
         try:
